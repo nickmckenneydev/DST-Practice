@@ -6,25 +6,51 @@ int data;
 struct node* next;
 }node;
 
-void printList(node* head){
- node* current;
+void printList(node* head)
+{
+    node* current;
+    current=head;
+    printf("==== Linked List ====");
+    printf("\n");
+    while(current!=NULL)
+    {
+        printf("%d ",current->data);
+        current=current->next;
+    }
+}
+void *insertBack(node** head,int v)
+{
+    node *newNode=(node*)malloc(sizeof(node));
+    node *current = *head;
+    newNode->data=v;
+    newNode->next=NULL;
+    if(*head==NULL){
+        *head=newNode;
+    }
+    else{
+    while(current->next!=NULL)
+    {
+        current=current->next;
+    }
+    current->next=newNode;
+}
 }
 int main(){
-   
-    node* newNode=NULL;
-    newNode = malloc(sizeof(node));
+    node* head = NULL;
+    printf("What size should the linked list be? ");
+    int size;
+    scanf("%d",&size);
+    int input;
+    for(int i=1;i<=size;i++)
+    {
+    printf("Enter value %d: ", i); 
+    scanf("%d", &input);
+    printf("\n");
+    insertBack(&head,input);
+    }
 
-printf("What size should the linked list be? ");
-int size = 0;
-int result = scanf("%d",&size);
-if(result==0){
-    while(fgetc(stdin)!='\n');
+printList(head);
+return 0;
 }
-node *insertFront(node* head,int v)
-{
-    int userInput=0;
-    scanf("Enter value %d: %d",i,&userInput);
-    newNode->data=userInput;
-    newNode->next = NULL;
-}
-}
+
+
