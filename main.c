@@ -30,16 +30,18 @@ void insertBack(node** head,int v)
     node *newNode=(node*)malloc(sizeof(node));
     node *current = *head;
     newNode->data=v;
-    newNode->next=NULL;
+    newNode->next=*head;
     if(*head==NULL){
         *head=newNode;
+         newNode->next=*head;
     }
     else{
-    while(current->next!=NULL)
+    while(current->next!=*head)
     {
         current=current->next;
     }
     current->next=newNode;
+     newNode->data=*head;
 }
 }
 int main(){
