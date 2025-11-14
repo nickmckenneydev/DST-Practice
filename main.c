@@ -8,8 +8,7 @@ struct node* next;
 
 void printList(node* head)
 {
-    node* current;
-    current=head;
+    node* current=head;
     printf("==== Linked List ====");
     printf("\n");
     while(current!=NULL)
@@ -18,7 +17,15 @@ void printList(node* head)
         current=current->next;
     }
 }
-void *insertBack(node** head,int v)
+void printBackWards(node* head)
+{
+    if (head == NULL) {
+        return;
+    }
+    printBackWards(head->next);
+    printf("%d ", head->data);
+}
+void insertBack(node** head,int v)
 {
     node *newNode=(node*)malloc(sizeof(node));
     node *current = *head;
@@ -50,7 +57,7 @@ int main(){
     }
 
 printList(head);
+printf("\n");
+printBackWards(head);
 return 0;
 }
-
-
